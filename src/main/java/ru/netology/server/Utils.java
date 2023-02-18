@@ -17,4 +17,8 @@ public class Utils {
     public static String getMimeType(Path template) throws IOException {
         return Files.probeContentType(template);
     }
+
+    public static void getBody() {
+
+    }
 }

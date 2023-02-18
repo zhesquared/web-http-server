@@ -51,14 +51,14 @@ public class Server {
             var methodMap = handlers.get(request.getMethod());
 
             if (methodMap == null) {
-                sendNotFound(out);
+                Responce.sendBadRequest(out);
                 return;
             }
 
             var handler = methodMap.get(request.getURI());
 
             if (handler == null) {
-                sendNotFound(out);
+                Responce.sendBadRequest(out);
                 return;
             }
 
@@ -74,15 +74,5 @@ public class Server {
 
         var methodMap = handlers.get(method);
         methodMap.put(path, handler);
-    }
-
-    void sendNotFound(BufferedOutputStream out) throws IOException {
-        out.write((
-                "HTTP/1.1 404 Not Found\r\n" +
-                        "Content-Length: 0\r\n" +
-                        "Connection: close\r\n" +
-                        "\r\n"
-        ).getBytes());
-        out.flush();
     }
 }
